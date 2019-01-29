@@ -1,0 +1,9 @@
+[Unit]
+Description=UltrasonicManipulationSimulinkModel
+
+[Service]
+Type=simple
+ExecStart= /home/pi/allInOne.elf
+
+[Install]
+WantedBy=multi-user.target

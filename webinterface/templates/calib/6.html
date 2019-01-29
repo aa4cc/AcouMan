@@ -1,0 +1,64 @@
+{% extends "calib/template.html" %}
+{% block title %} Calibration {% endblock %}
+{% block heading %} Calibration - step 7 {% endblock %}
+{% block content %}
+	<h3> Restart the Matlab service </h3>
+	<p> In order to apply the new calibration, the MATLAB service must be restarted. Check the status of the service, then press Start or Restart. </p>
+	<div> MATLAB service</div>
+	<div class="btn-group service-switch" role="group" data-service="ultraman" aria-label="Basic example">
+		<button type="button" class="btn btn-success" data-command="start">Start</button>
+		<button type="button" class="btn btn-danger" data-command="stop">Stop</button>
+		<button type="button" class="btn btn-primary" data-command="restart">Restart</button>
+		<button type="button" class="btn btn-secondary" data-command="status">Status</button>
+	</div>
+
+		<!-- Modal -->
+	<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="statusModalLabel">Service status</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <pre>
+	        </pre>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div style="margin-top: 10px"> &nbsp; </div>
+
+	<div class="float-right" visibility="hidden">
+		<a class="btn btn-success" href="/" role="button">Done</a>
+	</div>
+	<div class="float-left">
+		<a class="btn btn-danger" href="/calib/5" role="button">Back</a>
+	</div>
+{% endblock %}
+{% block scripts %} 
+{{ super() }}
+<script>
+$(function () {
+		$(".service-switch button").click(function (){
+			_this = $(this)
+			command = _this.data("command")
+			service = _this.parent().data("service")
+			console.log(command, service)
+			$.get("/"+service+"/"+command, function( data ) {
+			  if(data != ""){
+			  	$('#statusModal pre').text(data)
+			  	$('#statusModal').modal()
+
+			  }
+			});
+		})
+	});
+</script>
+{% endblock %}

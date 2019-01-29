@@ -1,0 +1,30 @@
+{% extends "calib/template.html" %}
+{% block title %} Calibration {% endblock %}
+{% block heading %} Calibration - step 4 {% endblock %}
+{% block content %}
+	<h3> Adjust threshold </h3>
+	<div class="debug"></div>
+	<div>
+		<table><tr><td>	<img src="/img/threshold" /> </td> 
+			<td> Threshold determines what shade is picked up as the black dots. Bigger threshold means that lighter shades are picked up, which may add unwanted noise. At lower threshold, the dots may not be correctly recognised. Set threshold using the slider, then click "Apply" to recalculate the binary image. When the threshold is set correctly, click "Continue". </td> </tr> </table>
+		<input type="range" min="0" max="100"  value="{{data.threshold}}" class="slider" id="slider" style="width: 100%; height: 25px;" name="threshold">
+	<div style="text-align: center">
+		<button class="btn btn-primary" align="middle" onclick="send_threshold()" id="refresh" role="button">Apply</button>
+	</div>
+	<div class="float-right">
+		<a class="btn btn-success" id="continue" href="/calib/4" role="button">Continue</a>
+	</div>
+	<div class="float-left">
+		<a class="btn btn-danger" href="/calib/2" role="button">Back</a>
+	</div>
+{% endblock %}
+{% block scripts %} 
+{{ super() }}
+<script type="text/javascript">
+	var socket = io.connect('http://' + document.domain + ':' + location.port);
+	function send_threshold() {
+		socket.emit('threshold',document.getElementById('slider').value)
+		setTimeout(location.reload(), 1000)
+	}
+</script>
+{% endblock %}

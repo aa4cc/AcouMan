@@ -1,0 +1,28 @@
+<html>
+<h1> Simulink models readme </h1>
+
+This document contains a description of the Simulink models and their usage.
+
+<h2> Simulink models </h2>
+
+The models require the MATLAB system object from <a href="https://github.com/aa4cc/raspi-ballpos">raspi-ballpos</a> to function. In addition, the compiler on the target device must have the <a href="http://eigen.tuxfamily.org/">Eigen</a> and <a href="http://yixuan.cos.name/LBFGSpp/">LBFGS++</a> libraries. Models named "modelNameUDP" must be deployed to the Raspberry. Then, the model's parameters can be sent via UDP from the simple MATLAB GUIs. Models without the "UDP" can be controlled from Simulink directly. 
+
+<h3> Bubbles </h3>
+
+This is a simple demonstration model. It creates a high-pressure point at a specified position.
+
+<h3> Ball on dry surface </h3>
+
+This model implements a controller for positioning a ball on a dry surface. If the controller fails to stabilize the ball, check the calibration of the platform.
+
+<h3> Ball on water </h3>
+
+This model implements a controller for positioning a floating ball. Ideally, the ball should be put in a transparent shallow container, such as a Petri dish, filled with water.
+
+<h2> GUIs </h2>
+
+The MATLAB GUIs are simple figures, set to appear on the secondary monitor. Check if the UDP port number in the .m files matches the UDP port number in the Simulink models.
+
+All GUIs share similar controls. Dragging the circle changes position. In the "bubbles" model, the mouse wheel changes the pressure intensity.
+
+</html>

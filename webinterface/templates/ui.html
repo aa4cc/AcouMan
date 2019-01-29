@@ -1,0 +1,130 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+		<link rel="manifest" href="static/site.webmanifest">
+		<link rel="mask-icon" href="static/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#666666">
+
+		<title>Ultrasonic manipulation platform</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/static/css/all.css">
+		<!-- Custom styles for this template -->
+	</head>
+
+	<body>
+		<div class"container-fluid">
+			<div class="" style="position:absolute;">
+				<button type="button" class="btn btn-lg btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars" style="font-size:5vw"></i></button>
+				<div class="dropdown-menu">
+					<span>Platform modes</span>
+					<button type="button" class="dropdown-item mode-selector" data-mode="1">Ball on water</button>
+					<button type="button" class="dropdown-item mode-selector" data-mode="2">Ball on dry surface</button>
+					<button type="button" class="dropdown-item mode-selector" data-mode="3">Pressure points</button>
+					<div class="dropdown-divider"></div>
+					<button type="button" class="dropdown-item mode-selector" data-mode="0">Disable platform</button>
+					<div class="dropdown-divider"></div>
+					<span>Position Measurement</span><br>
+					<div class="btn-group service-switch" role="group" data-service="posmeas" aria-label="Basic example">
+						<button type="button" class="btn btn-success" data-command="start">Start</button>
+						<button type="button" class="btn btn-danger" data-command="stop">Stop</button>
+						<button type="button" class="btn btn-primary" data-command="restart">Restart</button>
+						<button type="button" class="btn btn-secondary" data-command="status">Status</button>
+					</div>
+					<div class="dropdown-divider"></div>
+					<span class="btn">Matlab service</span><br>
+					<div class="btn-group service-switch" role="group" data-service="ultraman" aria-label="Basic example">
+						<button type="button" class="btn btn-success" data-command="start">Start</button>
+						<button type="button" class="btn btn-danger" data-command="stop">Stop</button>
+						<button type="button" class="btn btn-primary" data-command="restart">Restart</button>
+						<button type="button" class="btn btn-secondary" data-command="status">Status</button>
+					</div>
+					<button type="button" class="dropdown-item btn-primary" id="reboot">Reboot</button>
+					<button type="button" class="dropdown-item btn-danger" id="poweroff">Poweroff</button>
+				</div>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="statusModalLabel">Service status</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <pre>
+			        </pre>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="/static/js/jquery-3.3.1.min.js"><\/script>')</script>-->
+		<script src="/static/js/jquery-3.3.1.min.js"></script>
+		<script src="/static/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+		<script>
+			$(function () {
+					$(".service-switch button").click(function (){
+						_this = $(this)
+						command = _this.data("command")
+						service = _this.parent().data("service")
+						console.log(command, service)
+						$.get( service+"/"+command, function( data ) {
+						  if(data != ""){
+						  	$('#statusModal pre').text(data)
+						  	$('#statusModal').modal()
+
+						  }
+						});
+					})
+
+					$(".mode-selector").click(function (){
+						_this = $(this)
+						mode = _this.data("mode")
+						if (mode == 2) {
+							$('#statusModal pre').text("The mode is already running")
+						  	$('#statusModal').modal()
+						} else {
+							$.get("mode/"+mode);
+							$("#text_wait").attr("visibility","visible")
+						}
+					})
+
+					$("#poweroff").click(function (){
+						$.get("poweroff");
+					})
+
+					$("#reboot").click(function (){
+						$.get("reboot");
+					})
+			});
+		</script>
+
+		<script src="/static/js/d3.v3.min.js"></script>
+	</body>
+</html>

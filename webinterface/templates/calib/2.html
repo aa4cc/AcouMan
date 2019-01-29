@@ -1,0 +1,24 @@
+{% extends "calib/template.html" %}
+{% block title %} Calibration {% endblock %}
+{% block heading %} Calibration - step 3 {% endblock %}
+{% block content %}
+	<h3> Slide the calibration plate on the transducers </h3>
+	<p> Calibration plate (image below) is a 3D printed component with black dots. These dots are important for the <i>autocalib</i> feature.</p>
+	<img src="/static/img/calib_plate.png" align="center" width="25%">
+	<p> Slide the plate on the transducers, then push on it to make sure that the plate is level.</p>
+	<table>
+		<tr>
+			<td width="31%"><img src="/static/img/slide_0.jpg" align="center" width="100%"></td>
+			<td width="29%"><img src="/static/img/slide_1.jpg" align="center" width="100%"></td>
+		</tr>
+	</table>
+	<div class="float-right" visibility="hidden">
+		<a class="btn btn-success" href="/calib/3" role="button">Continue</a>
+	</div>
+	<div class="float-left">
+		<a class="btn btn-danger" href="/calib/1" role="button">Back</a>
+	</div>
+{% endblock %}
+{% block scripts %} 
+{{ super() }}
+{% endblock %}

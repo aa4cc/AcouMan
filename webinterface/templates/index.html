@@ -1,0 +1,515 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+		<link rel="manifest" href="static/site.webmanifest">
+		<link rel="mask-icon" href="static/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#666666">
+
+		<title>Ultrasonic manipulation platform</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/static/css/all.css">
+		<!-- Custom styles for this template -->
+	</head>
+
+	<body>
+		{% set colors = ("000000", "ff0000", "d2d2d2", "8080ff") %}
+		{% set ballSizes = (0,20,25,12) %}
+		{% set color = colors[mode] %}
+		{% set ballSize = ballSizes[mode] %}
+		<div class"container-fluid">
+			<div class="" style="position:absolute;">
+				<button type="button" class="btn btn-lg btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars" style="font-size:5vw"></i></button>
+				<div class="dropdown-menu">
+					<span>Platform modes</span>
+					<button type="button" class="dropdown-item mode-selector" data-mode="1">Ball on water</button>
+					<button type="button" class="dropdown-item mode-selector" data-mode="2">Ball on dry surface</button>
+					<button type="button" class="dropdown-item mode-selector" data-mode="3">Pressure points</button>
+					<div class="dropdown-divider"></div>
+					<button type="button" class="dropdown-item mode-selector" data-mode="0">Disable platform</button>
+					<div class="dropdown-divider"></div>
+					<button type="button" class="dropdown-item demo-toggle">Demo</button>
+					<div class="dropdown-divider"></div>
+					<span>PosMeas</span><br>
+					<div class="btn-group service-switch" role="group" data-service="posmeas" aria-label="Basic example">
+						<button type="button" class="btn btn-success" data-command="start">Start</button>
+						<button type="button" class="btn btn-danger" data-command="stop">Stop</button>
+						<button type="button" class="btn btn-primary" data-command="restart">Restart</button>
+						<button type="button" class="btn btn-secondary" data-command="status">Status</button>
+					</div>
+					<span>Matlab service</span><br>
+					<div class="btn-group service-switch" role="group" data-service="ultraman" aria-label="Basic example">
+						<button type="button" class="btn btn-success" data-command="start">Start</button>
+						<button type="button" class="btn btn-danger" data-command="stop">Stop</button>
+						<button type="button" class="btn btn-primary" data-command="restart">Restart</button>
+						<button type="button" class="btn btn-secondary" data-command="status">Status</button>
+					</div>
+					<div class="dropdown-divider"></div>
+					<span>Utility</span>
+					<a class="dropdown-item" href="/calib/0" role="button">Calibration</a>
+					<button type="button" class="dropdown-item btn-primary" id="reboot">Reboot</button>
+					<button type="button" class="dropdown-item btn-danger" id="poweroff">Poweroff</button>
+				</div>
+			</div>
+			<div class="imgbox">
+				{% if mode==0 %}
+				<svg id="svg" style="width:98vw;height:98vh" viewBox="0 0 250 250" version="1.1">
+					  <sodipodi:namedview
+					     pagecolor="#ffffff"
+					     bordercolor="#666666"
+					     borderopacity="1"/>
+					  <defs
+					     id="defs10">
+					    <radialGradient
+					       id="grad1"
+					       cx="50%"
+					       cy="50%"
+					       r="80%"
+					       fx="40%"
+					       fy="40%">
+					      <stop
+					         offset="0%"
+					         style="stop-color:rgb(255,255,255);stop-opacity:0"
+					         id="stop2" />
+					      <stop
+					         offset="100%"
+					         style="stop-color:rgb(0,0,0);stop-opacity:1"
+					         id="stop4" />
+					    </radialGradient>
+					    <marker
+					       id="triangle"
+					       viewBox="0 0 10 10"
+					       refX="0"
+					       refY="5"
+					       markerUnits="strokeWidth"
+					       markerWidth="8"
+					       markerHeight="6"
+					       orient="auto">
+					      <path
+					         d="M 0 0 L 10 5 L 0 10 z"
+					         id="path7" />
+					    </marker>
+					  </defs>
+					  <rect
+					     width="250"
+					     height="250"
+					     style="fill:#444444;stroke:#000000;stroke-width:2;stroke-opacity:1"
+					     id="rect12" />
+					  <circle
+					     style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff5555;stroke-width:25;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+					     id="path867"
+					     cx="125.79449"
+					     cy="124.20551"
+					     r="82.891953" />
+					  <path
+					     style="fill:none;stroke:#ff5555;stroke-width:25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+					     d="M 227.10593,26.601695 32.190678,221.51695"
+					     id="path869"
+					     inkscape:connector-curvature="0" />
+					  <text
+					     xml:space="preserve"
+					     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Candara;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+					     x="125"
+					     y="105"
+					     id="text_default"><tspan
+					       sodipodi:role="line"
+					       id="tspan871"
+					       x="125"
+					       y="105"
+					       style="font-size:32px">Platform disabled</tspan><tspan
+					       sodipodi:role="line"
+					       x="125"
+					       y="137"
+					       id="tspan875"
+					       style="font-size:21.33333397px">Go to the menu and</tspan><tspan
+					       sodipodi:role="line"
+					       x="125"
+					       y="165"
+					       id="tspan877"
+					       style="font-size:21.33333397px">choose a platform mode</tspan></text>
+					    <g id="text_wait" visibility="hidden">
+					    <text style="fill:#ffffff;stroke:#000000;font-family:Candara;text-align:center;text-anchor:middle;font-weight:bold">
+					    	<tspan x="125" y="110" style="font-size:32px"> Please, wait </tspan>
+					    	<tspan x="125" y="140" style="font-size:20px"> Switching modes ... </tspan>
+					    </text></g>
+					</svg>
+				{% elif mode==1 or mode==2 %} 
+				<svg id="svg" style="width:98vw;height:98vh" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<radialGradient id="grad1" cx="50%" cy="50%" r="80%" fx="40%" fy="40%">
+							<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
+							<stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+						</radialGradient>
+					</defs>
+
+					<rect width="250" height="250" style="fill:#D0D0FF;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+					<g id="plate" transform="translate(25,25)">
+						<rect width="200" height="200" style="fill:#444444;stroke:#000000;stroke-width:0.2;stroke-opacity:1" />
+						<g class="ball" id="ball" data-index="0" data-color="{{color}}" transform="translate(0,25)">
+							<circle cx="0" cy="0" r="{{ballSize}}" fill="#{{color}}" style="stroke:#000000;stroke-width:0.0"/>
+							<circle cx="0" cy="0" r="{{ballSize}}" fill="url(#grad1)"/>
+						</g>
+						
+						<g id="ref" class="ref" data-index="0" data-color="{{color}}" transform="translate(0,0)">
+							<circle cx="0" cy="0" r="{{ballSize}}" style="fill:#{{color}};fill-opacity:0.3;stroke:#000000;stroke-width:0.4;stroke-dasharray:2,2"/>
+						</g>
+						<g id="text_wait" visibility="hidden">
+					    <text style="fill:#ffffff;stroke:#000000;font-family:Candara;text-align:center;text-anchor:middle;font-weight:bold">
+					    	<tspan x="100" y="90" style="font-size:32px"> Please, wait </tspan>
+					    	<tspan x="100" y="120" style="font-size:20px"> Switching modes ... </tspan>
+					    </text></g>
+					</g>
+					<text id="debug" x="50" y="15" fill="black"></text>
+				</svg>
+				{% else %}
+				<svg id="svg" style="width:98vw;height:98vh" viewBox="0 0 320 250" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<radialGradient id="grad1" cx="50%" cy="50%" r="80%" fx="40%" fy="40%">
+							<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
+							<stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+						</radialGradient>
+						<linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+					      <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+					      <stop offset="15%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+					      <stop offset="85%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+					      <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+					    </linearGradient>
+					</defs>
+
+					<rect width="250" height="250" style="fill:#D0D0FF;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+					<g id="plate" transform="translate(25,25)">
+						<rect width="200" height="200" style="fill:#444444;stroke:#000000;stroke-width:0.2;stroke-opacity:1" />
+						
+						<g id="ref" class="ref" data-index="0" data-color="{{color}}" transform="translate(0,0)">
+							<circle cx="0" cy="0" r="{{ballSize}}" style="fill:#{{color}};fill-opacity:0.3;stroke:#000000;stroke-width:0.4;stroke-dasharray:2,2"/>
+						</g>
+						<g id="text_wait" visibility="hidden">
+					    <text style="fill:#ffffff;stroke:#000000;font-family:Candara;text-align:center;text-anchor:middle;font-weight:bold">
+					    	<tspan x="100" y="90" style="font-size:32px"> Please, wait </tspan>
+					    	<tspan x="100" y="120" style="font-size:20px"> Switching modes ... </tspan>
+					    </text></g>
+					</g>
+					<g id="gauge" transform="translate(250,15)">
+						<rect x="25" width="20" height="200" style="fill: url(#grad2);fill-opacity:0.95;stroke: #000000;stroke-width:0.5" />
+						<text style="fill:#000000;stroke:none;font-family:Helvetica;text-align:center;text-anchor:middle;font-weight:normal;font-size:10px">
+							<tspan x="35" y="215"> Pressure </tspan>
+							<tspan x="35" y="227"> [Pa] </tspan>
+						</text>
+						<text style="fill:#000000;stroke:none;font-family:Helvetica;font-weight:normal;font-size:8px">
+							{% for y in range(5) %}
+							<tspan x="25" y="{{200-50*y}}" style="text-anchor:end;alignment-baseline:middle"> {{1500+250*y}} </tspan>
+							{% endfor %}
+						</text>
+						  <path style="fill:#cccccc;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+					     d="m 60,4 h -10 l -12,-4 12,-4 h 10 z"
+					     id="slider" />
+					</g>
+					<text id="debug" x="50" y="15" fill="black"></text>
+				</svg>
+				{% endif %}
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="statusModalLabel">Service status</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <pre>
+			        </pre>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="/static/js/jquery-3.3.1.min.js"><\/script>')</script>-->
+		<script src="/static/js/jquery-3.3.1.min.js"></script>
+		<script src="/static/js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+		<script>
+			var ref_selected = false
+			var gauge_selected = false
+			var control_locked = false
+			var mode = {{mode}}
+			var pt = $("svg")[0].createSVGPoint();  // Created once for document
+
+			switch (mode) {
+				case 1: range = - 0.000125
+					break;
+				case 2: range = - 0.000075
+					break;
+				default: range = - 0.00015	
+			}
+			
+			function select_ref(){
+				if (!control_locked) {
+					ref_selected = true
+					socket.emit('request_lock')
+				}
+			}
+
+			function select_pressure() {
+				if (!control_locked) {
+					gauge_selected = true
+					socket.emit('request_lock')
+				}
+			}
+
+			function deselect_all(){
+				ref_selected = false
+				gauge_selected = false
+				if (!control_locked) {
+					socket.emit('request_unlock')
+				}
+			}			
+
+			function move(x,y) {
+				pt.x = x;
+				pt.y = y;
+
+				// The cursor point, translated into svg coordinates
+				var cursorpt =  pt.matrixTransform($("#plate")[0].getScreenCTM().inverse());
+				x = cursorpt.x;
+				y = cursorpt.y;
+
+				if(ref_selected){
+					if (y<0) {
+						y = 0;
+					} else if (y>200) {
+						y = 200;
+					}
+					if (x<0) {
+						x = 0;
+					} else if (x>200) {
+						x = 200;
+					}
+					pos = [x,y];
+					$("#ref").trigger("move",pos)
+					x = (x-100)*range;
+					y = (y-100)*range;
+					pos = [x,y]
+					socket.emit('reference', pos)
+				}
+				if (gauge_selected) {
+					y = y + 10
+					if (y<0) {
+						y = 0;
+					} else if (y>200) {
+						y = 200;
+					}
+					$("#slider").attr("transform", "translate(0,"+y+")")
+					pressure = 2500 - 5*y
+					socket.emit('pressure',pressure)
+				}
+			}
+
+			$(function(){
+				$("#ref,#ball").on("move", function(evt, x, y){
+					$(this).attr("transform", "translate("+x+","+y+")")
+				})
+
+				// if(window.DeviceMotionEvent){
+				// 	window.addEventListener("devicemotion", motion, false);
+				// }else{
+				// 	console.log("DeviceMotionEvent is not supported");
+				// }
+
+				$("#ref").on('touchstart', select_ref)
+				$("#ref").mousedown(select_ref);
+				$("#gauge").on('touchstart', select_pressure)
+				$("#gauge").mousedown(select_pressure);
+				$("svg").mouseup(deselect_all)
+				$("svg").on('touchend', deselect_all)
+				$("svg").on('mousemove', function(event){
+					_this = $(this)
+					event.preventDefault();
+					var e = event.originalEvent;
+					move(event.clientX, event.clientY);
+					if(ref_selected) console.log('Mouse move')
+				})
+				$("svg").bind("touchmove", function (event) {
+					_this = $(this)
+					event.preventDefault();
+					x = event.originalEvent.targetTouches[0].clientX;
+					y = event.originalEvent.targetTouches[0].clientY;
+					move(x, y);
+					if(ref_selected) console.log('Touch move')
+				});
+			})
+
+			var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+			socket.emit('request_update')
+
+			socket.on('connect', function() {
+				$(".mode-selector[data-mode="+mode+"]").addClass("active")
+			});
+
+			socket.on('wait_message', function () {
+				$("#text_wait").attr("visibility","visible")
+				if (mode == 0) $("#text_default").attr("visibility","hidden")
+			})
+
+			socket.on('lock', function(override) {
+				if (!ref_selected && !gauge_selected || override) {
+					control_locked = true
+				}
+			})
+
+			socket.on('unlock', function() {
+				control_locked = false
+			})
+
+			socket.on('refresh', function(){
+				location.reload()
+			});
+
+			var last = 0;
+
+			socket.on('update', function(data){
+				switch (mode) {
+					case 1:
+					case 2:
+						ballpos = [data[0]/range+100,data[1]/range+100];
+						$("#ball").trigger("move",ballpos)
+
+						refpos = [data[2]/range+100,data[3]/range+100];
+						$("#ref").trigger("move",refpos)
+					break;
+					case 3:
+						refpos =  [data[0]/range+100,data[1]/range+100];
+						$("#ref").trigger("move",refpos)
+						slider_y = (2500-data[2])/5;
+						$("#slider").attr("transform", "translate(0,"+slider_y+")")
+				}				
+
+				now = new Date().valueOf()
+				diff = now - last
+				//console.log((1000/diff))
+				last = now
+			})
+
+			socket.on('set_demo', function(demo){
+				if (demo) {
+					$(".demo-toggle").addClass("active")
+				} else {
+					$(".demo-toggle").removeClass("active")
+				}
+			})
+
+
+			$(function () {
+					$(".service-switch button").click(function (){
+						_this = $(this)
+						command = _this.data("command")
+						service = _this.parent().data("service")
+						console.log(command, service)
+						$.get( service+"/"+command, function( data ) {
+						  if(data != ""){
+						  	$('#statusModal pre').text(data)
+						  	$('#statusModal').modal()
+
+						  }
+						});
+					})
+
+					$(".mode-selector").click(function (){
+						_this = $(this)
+						mode_new = _this.data("mode")
+						if (mode_new == mode) {
+							$('#statusModal pre').text("The mode is already running")
+						  	$('#statusModal').modal()
+						} else {
+							$.get("mode/"+mode_new);
+						}
+					})
+
+					$(".demo-toggle").click(function () {
+						socket.emit("toggle-demo")
+					})
+
+					$("#poweroff").click(function (){
+						$.get("poweroff");
+					})
+
+					$("#reboot").click(function (){
+						$.get("reboot");
+					})
+			});
+		</script>
+
+		<script src="/static/js/d3.v3.min.js"></script>
+		<script>
+
+		var color = d3.scale.category10();
+
+		var svg = d3.select("svg")
+
+		var circle = svg.selectAll("circle.touch");
+
+		d3.select("#plate")
+		    .on("touchstart", touch)
+		    .on("touchmove", touch)
+		    .on("touchend", touch);
+
+		function touch() {
+		  d3.event.preventDefault();
+		  //console.log(d3.touches(svg.node()))
+		  _this = $(this)
+		  socket.emit('touches', d3.touches(svg.node()));
+		}
+
+		// function touch() {
+		//   d3.event.preventDefault();
+
+		//   circle = circle
+		//       .data(d3.touches(svg.node()), function(d) { return d.identifier; });
+
+		//   circle.exit()
+		//       .attr("class", null)
+		//     .transition()
+		//       .attr("r", 1e-6)
+		//       .remove();
+
+		//   circle.enter().append("circle")
+		//       .attr("class", "touch")
+		//       .attr("r", 1e-6)
+		//       .style("fill", function(d) { return color(d.identifier); })
+		//     .transition()
+		//       .duration(500)
+		//       .ease("elastic")
+		//       .attr("r", 48);
+
+		//   circle
+		//       .attr("cx", function(d) { return d[0]; })
+		//       .attr("cy", function(d) { return d[1]; });
+		// }
+		</script>
+	</body>
+</html>

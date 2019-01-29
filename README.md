@@ -1,1 +1,1 @@
-# AcouMan
+# AcouMan - acoustic manipulation

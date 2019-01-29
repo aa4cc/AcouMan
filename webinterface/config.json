@@ -1,0 +1,27 @@
+{
+	"_annotate": "black",
+	"screen_resolution": [1680,1050],
+	"_white_balance": [1.05, 1.5],
+	"detectors": [
+		{
+			"threshold": 150,
+			"tracking_window": 100,
+			"downsample": 8,
+			"ball_size": [0,150],
+			"color_coefs": [0.35, 0.35, 0.35],
+			"type": "detector.BallDetector",
+			"name": "White",
+			"kernel_dwn": "1 1 1 1 1;1 1 1 1 1;1 1 1 1 1;1 1 1 1 1;1 1 1 1 1",
+			"kernel_roi": "0 0 1 1 1 0 0;0 1 1 1 1 1 0;1 1 1 1 1 1 1;1 1 1 1 1 1 1;1 1 1 1 1 1 1;0 1 1 1 1 1 0;0 0 1 1 1 0 0"
+
+		}
+	],
+	"exposition_time": 10,
+	"vflip": true,
+	"overlay_alpha": 50,
+	"frame_rate": 50,
+	"img_path": "/home/pi/img/",
+	"hflip": false,
+	"overlay": 2,
+	"resolution": [480,	480]
+}

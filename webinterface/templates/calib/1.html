@@ -1,0 +1,55 @@
+{% extends "calib/template.html" %}
+{% block title %} Calibration {% endblock %}
+{% block heading %} Calibration - step 2 {% endblock %}
+{% block content %}		
+	<h3> Adjust the height of the platform </h3>
+	<p id="debug"></p>
+	<p> First, set the height of the middle panel to approximately 75 mm. Then, fine tune the panel to make it level, and measure the gap between bottom and middle panel (as shown in Fig. 1). Enter the height to the form below. </p>
+	<p> Then, set the gap between the middle panel and the transducers to 65 mm. Use the 3D printed block (as shown in Fig. 2)</p>
+
+	<table>
+		<tr>
+			<td width="31%"><img src="/static/img/height_0.jpg" align="center" width="100%"></td>
+			<td width="29%"><img src="/static/img/height_1.jpg" align="center" width="100%"></td>
+		</tr>
+		<tr>
+			<td width="31%"><i>Figure 1</i></td>
+			<td width="29%"><i>Figure 2</i></td>
+		</tr>
+	</table>
+
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">The measured height between bottom and middle panel: </span>
+	  </div>
+	  <input type="number" class="form-control" id="input-height" onchange="testChange(this.value)" aria-label="Height">
+	  <div class="input-group-append">
+	    <span class="input-group-text">mm</span>
+	  </div>
+	</div>
+	
+	<div class="float-right" visibility="hidden">
+		<a class="btn btn-success disabled" href="/calib/2" onclick="sendHeight()" role="button">Continue</a>
+	</div>
+	<div class="float-left">
+		<a class="btn btn-danger" href="/calib/0" role="button">Back</a>
+	</div>
+{% endblock %}
+{% block scripts %} 
+{{ super() }}
+<script type="text/javascript">
+	var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+	function testChange(val) {
+		if (val > 65 && val < 80) {
+			$(".btn-success").removeClass("disabled")
+		} else {
+			$(".btn-success").addClass("disabled")
+		}
+	}
+
+	function sendHeight() {
+		socket.emit('height',document.getElementById('input-height').value)
+	}
+</script>
+{% endblock %}

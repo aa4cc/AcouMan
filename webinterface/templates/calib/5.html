@@ -1,0 +1,26 @@
+{% extends "calib/template.html" %}
+{% block title %} Calibration {% endblock %}
+{% block heading %} Calibration - step 6 {% endblock %}
+{% block content %}
+	<h3> Verify the identified positions </h3>
+	<p> Verify that the red crosses match the black dots of the calibration plate. If the positions do not match, clean the plexiglass, ensure that the platform is properly illuminated, and click "Back" to re-run the <i>autocalib</i> script. If the identified positions are correct, click "Continue". </p>
+	<b> WARNING: Clicking the "Continue" button rewrites the previous calibration </b>
+	<div class="imgbox" align="center">
+		<svg id="svg" style="width:50%;height:50%" viewBox="0 0 480 480" version="1.1">
+			<image x="0" y="0" width="480" height="480" xlink:href="http://{{data.ip}}:5001/image/White/image" />
+			{% for pos in data.points %}
+				<line x1="{{pos[0]-5}}" x2="{{pos[0]+5}}" y1="{{pos[1]-5}}" y2="{{pos[1]+5}}" style="stroke: #ff0000;stroke-width:2"/>
+				<line x1="{{pos[0]-5}}" x2="{{pos[0]+5}}" y1="{{pos[1]+5}}" y2="{{pos[1]-5}}" style="stroke: #ff0000;stroke-width:2"/>
+			{% endfor %}
+		</svg>
+	</div>
+	<div class="float-right" visibility="hidden">
+		<a class="btn btn-success" href="/calib/6" role="button">Continue</a>
+	</div>
+	<div class="float-left">
+		<a class="btn btn-danger" href="/calib/4" role="button">Back</a>
+		</div>
+{% endblock %}
+{% block scripts %} 
+{{ super() }}
+{% endblock %}

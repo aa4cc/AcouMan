@@ -1,0 +1,9 @@
+[Unit]
+Description=UltrasonicManipulationWebInterface
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/webinterface/app.py
+
+[Install]
+WantedBy=multi-user.target

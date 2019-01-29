@@ -1,0 +1,10 @@
+[Unit]
+Description=RaspiCameraPositionMeasurement
+
+[Service]
+Type=simple
+WorkingDirectory = /home/pi/raspi-ballpos
+ExecStart = /usr/bin/python3 /home/pi/raspi-ballpos/vision.py -p --web-interface -c /home/pi/config_ball.json
+
+[Install]
+WantedBy=multi-user.target
