@@ -17,7 +17,8 @@ function x = BFGSsolve(critFunc,init,gradTolerance,displayIter)
         step = dir*alpha;
         xNew = x+step;
         [oNew,gNew] = critFunc(xNew);
-        cond = -sigma*g'*dir;
+        %cond = -sigma*g'*dir;
+        cond = sigma*(g'*g);
         while (o - oNew < alpha*cond)
             alpha = alpha*beta;
             step = dir*alpha;

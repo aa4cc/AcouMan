@@ -71,6 +71,6 @@ oFunc = @(phases) optFunc(phases, wp, wx, wy, wz, M, Ma, Maa, Maaa, K1, K2);
 %% optimization
 addpath('/../');
 initialPhases = zeros(64,1);
-gradTolerance = 0.05;
+gradTolerance = 100;
 displayIter = true;
 phases = BFGSsolve(oFunc,initialPhases,gradTolerance,displayIter);

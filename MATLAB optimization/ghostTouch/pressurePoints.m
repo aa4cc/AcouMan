@@ -61,7 +61,7 @@ end
 oFunc = @(phases) optPress(phases,M,pressures);
 
 %% optimization
-gradTolerance = 0.5;
+gradTolerance = 500;
 displayIter = false;
 phases10 = BFGSsolve(oFunc,initialPhases,gradTolerance,displayIter);
 
