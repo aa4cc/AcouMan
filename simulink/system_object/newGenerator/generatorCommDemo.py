@@ -16,7 +16,7 @@ port = serial.Serial('COM5', 230400, parity= serial.PARITY_EVEN) #pozn.: paritu 
 openCode = [255,255,240] #on receiving openCode, generator will shift further non-code bytes into its settings register
 closeCode = [255,255,241] #on receiving stopCode, generator will ignore further non-code bytes. It will also copy data from settings register to individual channels.
 
-for idx in [62,63]:
+for idx in range(64):
 
 	dataArray = []
 	dataArray = numpy.zeros(128).astype(int)
