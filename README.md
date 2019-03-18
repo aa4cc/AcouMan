@@ -6,6 +6,7 @@ AcouMan is a platform for acoustic manipulation, that is for manipulating object
 This repository contains all files needed to reproduce the platform.
 
 * [_MATLAB Optimization/_](MATLAB&#32;optimization/readme.md) folder contains Matlab scripts implementing a solver of the optimization problem where one looks for such phase shifts of the signals driving the transducer array that a given pressure point in space is generated
+* [_FPGA generator_](FPGA_generator/readme.md) folder contains a Quartus project for the 64 channel generator
 * [_calibration/_](calibration/readme.md) folder contains all scripts for calibrating the camera
 * [_manufacturing/_](manufacturing/readme.md) folder contains all drawings for a laser cutter, 3D models and PCB designs for manufacturing the platform
 * [_simulink/_](simulink/readme.md) folder contains Simulink schemes for controlling the platform in various modes
