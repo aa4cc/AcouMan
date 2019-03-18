@@ -6,11 +6,11 @@ This documents describes what [components](#required-components) you need and ho
 
 ## Required components
 
-All source files required for building the platform are located in the _manufacturing_ folder.
+All source files required for building the platform are located in the [manufacturing](../manufacturing/readme.md) folder.
 
 ### Laser-cut components
 
-The drawings are located in _manufacturing/laser cut_ folder in DXF format, and can be opened, for instance, with LibreCAD. Set the units to millimeters. The drawings are split into layers named _Cut_ and _Engrave_ (or, in complicated cases _EngraveTop_ and _EngraveBottom_). Shapes in _Engrave_ layers should be filled (you need to engrave the whole shape, not just its outline).
+The drawings are located in `manufacturing/laser cut` folder in DXF format, and can be opened, for instance, with LibreCAD. Set the units to millimeters. The drawings are split into layers named _Cut_ and _Engrave_ (or, in complicated cases _EngraveTop_ and _EngraveBottom_). Shapes in _Engrave_ layers should be filled (you need to engrave the whole shape, not just its outline).
 
 You need to laser cut the following drawings: _top_, _middle_ and _bottom panel_, and _small transducer box_. The panels must be made from transparent and sturdy material, we recommend using 5mm thick plexiglass. The features engraved in the _bottom panel_ need to be about 1.5-2 mm deep. The _small transducer box_ is designed to be cut from 4mm thick material, we recommend using plywood.
 
@@ -18,7 +18,7 @@ Optionally, you can cut-out the _shield_ from plexiglass.
 
 ### 3D printed components
 
-The models are located in _manufacturing/3D print_ in SCAD format. You need to print four copies of models named _pillar_ and _prism_. We recommend printing from PLA on fast or better quality. Optionally, you can also print four protective _caps_ from a soft, flexible material like PLA FLEX or TPU.
+The models are located in `manufacturing/3D print` in SCAD format. You need to print four copies of models named _pillar_ and _prism_. We recommend printing from PLA on fast or better quality. Optionally, you can also print four protective _caps_ from a soft, flexible material like PLA FLEX or TPU.
 
 ### PCB
 
@@ -40,7 +40,7 @@ Apart from the aforementioned components, you will also need:
  * 1.2 meters (4x30 cm segments) of M10 threaded rod
  * 8x M10 nuts
  * 4x M2 screws and nuts
- * if you decided to cut-out the plexiglass shield, you will also need 8x M3 screws and 4x M3x12 spacers (both sides female)
+ * if you decided to cut-out the plexiglass shield, you will also need 8x M3 screws and 4x M3x12 standoffs (both sides female)
 
 ## Assembly
 
@@ -92,6 +92,8 @@ On the oscilloscope, you should see a sine wave that is (almost) in phase, or ou
 
 Before building the shield, you need to change the programming of the DE0-Nano board. The Quartus project is located in the _FPGA generator_ folder. For information on how to program the permanent memory of the device, please refer to the user manual available on [Terasic website](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=139&No=593&PartNo=4), chapter 9.1.
 
+_Note: Programming the permanent memory takes effect after restarting the device (i.e. disconnecting power supply)._ 
+
 #### Solder the shield PCB
 
 This is relatively straightforward, but time consuming. Make sure to solder all ICs the correct way. If you have the laser-cut plexiglass shield, you can mount it on top of the PCB using the M3 screws and spacers.
@@ -110,4 +112,4 @@ As mentioned above, we use 34 core flat cable. On one end of the cable, we have 
 
 ![Flat cable](flat_cable.jpg)
 
-If you want to check, that your assembled generator is working, you can run the _generatorCommDemo.py_ script located in _simulink/system object/newGenerator/_. Just connect both miniUSB cables to your PC and change the default 'COM5' port in the script for the port of the USB-UART converter found in the device manager. On pressing Enter, the script should individually turn on all channels.
+If you want to check, that your assembled generator is working, you can run the `generatorCommDemo.py` script located in `simulink/system_object/newGenerator/`. Just connect both miniUSB cables to your PC and change the default 'COM5' port in the script for the port of the USB-UART converter found in the device manager. On pressing Enter, the script should individually turn on all channels.
