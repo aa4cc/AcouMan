@@ -22,9 +22,11 @@ helpsearch*/
 # Simulink code generation folders
 slprj/
 sccprj/
+*_ert_rtw/
 
 # Simulink output
 *.elf
+*.slxc
 
 # Matlab code generation folders
 codegen/
