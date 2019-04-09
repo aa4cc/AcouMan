@@ -75,8 +75,10 @@ sudo pip3 install numpy --upgrade
 Also, there are two custom packages in the `raspi-ballpos` folder that must be installed:
 ```
 cd raspi-ballpos
-sudo sharemem/install
-sudo find_object/install
+cd sharemem/
+sudo ./install
+cd ../find_object/
+sudo ./install
 ```
 
 ### Services
