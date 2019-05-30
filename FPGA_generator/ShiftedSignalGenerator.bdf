@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 16 320 192 336)
+	(rect 0 320 176 336)
 	(text "INPUT" (rect 133 0 162 10)(font "Arial" (font_size 6)))
 	(text "CLOCK_50" (rect 9 0 66 11)(font "Arial" ))
 	(pt 176 8)
@@ -34,7 +34,7 @@ applicable agreement for further details.
 		(line (pt 117 12)(pt 121 8))
 	)
 	(text "VCC" (rect 136 7 157 17)(font "Arial" (font_size 6)))
-	(annotation_block (location)(rect -40 336 16 352))
+	(annotation_block (location)(rect -56 336 0 352))
 )
 (pin
 	(input)
@@ -123,9 +123,9 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 2248 368 4241 384)
+	(rect 2232 368 4227 384)
 	(text "OUTPUT" (rect 1 0 41 10)(font "Arial" (font_size 6)))
-	(text "GPIO_0[1],GPIO_0[3],GPIO_0[5],GPIO_0[7],GPIO_0[9],GPIO_0[11],GPIO_0[13],GPIO_0[15],GPIO_0[17],GPIO_0[19],GPIO_0[21],GPIO_0[23],GPIO_0[25],GPIO_0[27],GPIO_0[29],GPIO_0[31],GPIO_0[32],GPIO_0[30],GPIO_0[28],GPIO_0[26],GPIO_0[24],GPIO_0[22],GPIO_0[20],GPIO_0[18],GPIO_0[16],GPIO_0[14],GPIO_0[12],GPIO_0[10],GPIO_0[8],GPIO_0[6],GPIO_0[4],GPIO_0[2]" (rect 90 0 1987 11)(font "Arial" ))
+	(text "GPIO_0_1,GPIO_0_3,GPIO_0_5,GPIO_0_7,GPIO_0_9,GPIO_0_11,GPIO_0_13,GPIO_0_15,GPIO_0_17,GPIO_0_19,GPIO_0_21,GPIO_0_23,GPIO_0_25,GPIO_0_27,GPIO_0_29,GPIO_0_31,GPIO_0_32,GPIO_0_30,GPIO_0_28,GPIO_0_26,GPIO_0_24,GPIO_0_22,GPIO_0_20,GPIO_0_18,GPIO_0_16,GPIO_0_14,GPIO_0_12,GPIO_0_10,GPIO_0_8,GPIO_0_6,GPIO_0_4,GPIO_0_2" (rect 90 0 1989 11)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -136,13 +136,13 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 2488 344 2552 360))
+	(annotation_block (location)(rect 2472 344 2536 368))
 )
 (pin
 	(output)
-	(rect 2248 432 4241 448)
+	(rect 2240 424 4235 440)
 	(text "OUTPUT" (rect 1 0 41 10)(font "Arial" (font_size 6)))
-	(text "GPIO_1[1],GPIO_1[3],GPIO_1[5],GPIO_1[7],GPIO_1[9],GPIO_1[11],GPIO_1[13],GPIO_1[15],GPIO_1[17],GPIO_1[19],GPIO_1[21],GPIO_1[23],GPIO_1[25],GPIO_1[27],GPIO_1[29],GPIO_1[31],GPIO_1[32],GPIO_1[30],GPIO_1[28],GPIO_1[26],GPIO_1[24],GPIO_1[22],GPIO_1[20],GPIO_1[18],GPIO_1[16],GPIO_1[14],GPIO_1[12],GPIO_1[10],GPIO_1[8],GPIO_1[6],GPIO_1[4],GPIO_1[2]" (rect 90 0 1987 11)(font "Arial" ))
+	(text "GPIO_1_1,GPIO_1_3,GPIO_1_5,GPIO_1_7,GPIO_1_9,GPIO_1_11,GPIO_1_13,GPIO_1_15,GPIO_1_17,GPIO_1_19,GPIO_1_21,GPIO_1_23,GPIO_1_25,GPIO_1_27,GPIO_1_29,GPIO_1_31,GPIO_1_32,GPIO_1_30,GPIO_1_28,GPIO_1_26,GPIO_1_24,GPIO_1_22,GPIO_1_20,GPIO_1_18,GPIO_1_16,GPIO_1_14,GPIO_1_12,GPIO_1_10,GPIO_1_8,GPIO_1_6,GPIO_1_4,GPIO_1_2" (rect 90 0 1989 11)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -153,7 +153,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12))
 		(line (pt 78 12)(pt 82 8))
 	)
-	(annotation_block (location)(rect 2488 440 2552 456))
+	(annotation_block (location)(rect 2480 432 2544 448))
 )
 (symbol
 	(rect 368 408 560 552)
@@ -733,18 +733,6 @@ applicable agreement for further details.
 	(pt 1096 472)
 )
 (connector
-	(pt 184 328)
-	(pt 192 328)
-)
-(connector
-	(pt 192 328)
-	(pt 272 328)
-)
-(connector
-	(pt 272 328)
-	(pt 576 328)
-)
-(connector
 	(pt 1456 440)
 	(pt 1856 440)
 	(bus)
@@ -878,24 +866,31 @@ applicable agreement for further details.
 	(pt 2160 0)
 )
 (connector
+	(pt 176 328)
+	(pt 272 328)
+)
+(connector
+	(pt 272 328)
+	(pt 576 328)
+)
+(connector
 	(pt 176 456)
 	(pt 368 456)
 )
 (connector
-	(text "arrout[0..31]" (rect 2168 360 2228 371)(font "Arial" ))
-	(pt 2144 376)
-	(pt 2248 376)
+	(text "arrout[63..32]" (rect 2152 360 2218 371)(font "Arial" ))
+	(pt 2128 376)
+	(pt 2232 376)
 	(bus)
 )
 (connector
-	(text "arrout[32..63]" (rect 2168 424 2234 435)(font "Arial" ))
-	(pt 2144 440)
-	(pt 2248 440)
+	(text "arrout[31..0]" (rect 2160 416 2220 427)(font "Arial" ))
+	(pt 2136 432)
+	(pt 2240 432)
 	(bus)
 )
 (junction (pt 272 440))
 (junction (pt 272 328))
 (junction (pt 1808 520))
-(junction (pt 192 328))
 (junction (pt 1304 -24))
 (junction (pt 2096 536))
