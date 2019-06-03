@@ -1,3 +1,6 @@
 [submodule "raspi-ballpos"]
 	path = raspi-ballpos
 	url = https://github.com/aa4cc/raspi-ballpos.git
+[submodule "FPGA_generator"]
+	path = FPGA_generator
+	url = git@github.com:aa4cc/fpga-generator
