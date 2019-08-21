@@ -3,6 +3,7 @@ Description=UltrasonicManipulationWebInterface
 
 [Service]
 Type=simple
+WorkingDirectory=/home/pi/webinterface
 ExecStart=/usr/bin/python3 /home/pi/webinterface/app.py
 
 [Install]
