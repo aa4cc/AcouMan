@@ -1,6 +1,11 @@
 # AcouMan - a platform for acoustic manipulation
 [index](README.md)
 
+# _!! IMPORTANT -- repository relocated !!_
+Content in this repo is no longer updated.
+Go to (https://gitlab.fel.cvut.cz/aa4cc/acouman/acouman-main) to get the latest version.
+# _!! !!_
+
 AcouMan is a platform for acoustic manipulation, that is for manipulating objects via shaping the surrounding acoustic pressure field. You can see the platform in the figure below and a detailed description will be (hopefully) published soon. If you want to see the platform in action, check our [video](https://youtu.be/BdDq_jRSNYA) showing some experiments with the platform.
 
 This repository contains all files needed to reproduce the platform.
